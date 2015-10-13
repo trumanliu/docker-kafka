@@ -1,7 +1,6 @@
 FROM relateiq/oracle-java7
 
-RUN apt-get update && apt-get install -y \
-  ca-certificates wget
+RUN apt-get update && apt-get install -y wget
 
 RUN mkdir /data /logs /kafka
 
