@@ -18,6 +18,13 @@ case $BRANCH in
     # TODO Service discovery
     ZOOKEEPER_PORT=${ZOOKEEPER_PORT:-2181}
   ;;
+  rc)
+    EXTENSION=".rc"
+    CHROOT=${ZOOKEEPER_CHROOT:-/v0_8_1_rc}
+
+    # TODO Service discovery
+    ZOOKEEPER_PORT=${ZOOKEEPER_PORT:-2181}
+  ;;
   *)
     # Developer environments, etc.
     EXTENSION=".default"
