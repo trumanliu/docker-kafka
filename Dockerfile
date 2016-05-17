@@ -1,20 +1,29 @@
-FROM relateiq/oracle-java7
+FROM java:openjdk-8-jre-alpine
 
-RUN apt-get update && apt-get install -y wget
+ARG SCALA_VERSION=2.11
+ARG KAFKA_VERSION=0.9.0.1
+ARG MIRROR=http://apache.mirrors.pair.com
 
-RUN mkdir /data /logs /kafka
+ENV KAFKA_HOME /opt/kafka
+ENV PATH $PATH:$KAFKA_HOME/bin
 
-RUN wget --progress=dot:mega -O - https://s3-us-west-1.amazonaws.com/relateiq-build-resources/kafka_2.10-0.8.1.1.tgz | tar -zx -C /kafka --strip-components=1
+RUN mkdir /opt
 
-# RUN cd kafka && ./gradlew jar
+# Dependencies
+RUN apk add --no-cache supervisor bash
 
-VOLUME [ "/data", "/logs" ]
+# Kafka
+RUN wget -q -O - $MIRROR/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz | \
+    tar -xzf - -C /opt && \
+    mv /opt/kafka_$SCALA_VERSION-$KAFKA_VERSION /opt/kafka
 
-# primary, jmx
-EXPOSE 9092 7203
+ADD scripts/start-kafka.sh /usr/bin/
 
-ADD http://repo1.maven.org/maven2/org/slf4j/slf4j-log4j12/1.7.6/slf4j-log4j12-1.7.6.jar /kafka/lib/slf4j-log4j12.jar
-ADD config /kafka/config
-ADD start.sh /start.sh
+# Supervisor config
+ADD supervisor.ini /etc/supervisor.d/supervisor.ini
 
-CMD ["/start.sh"]
+EXPOSE 9092
+
+VOLUME /opt/kafka/config
+
+CMD ["supervisord", "-n", "-c", "/etc/supervisor.d/supervisor.ini"]
