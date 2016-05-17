@@ -2,7 +2,6 @@ FROM java:openjdk-8-jre-alpine
 
 ARG SCALA_VERSION=2.11
 ARG KAFKA_VERSION=0.9.0.1
-ARG MIRROR=http://apache.mirrors.pair.com
 
 ENV KAFKA_HOME /opt/kafka
 ENV PATH $PATH:$KAFKA_HOME/bin
@@ -10,10 +9,10 @@ ENV PATH $PATH:$KAFKA_HOME/bin
 RUN mkdir /opt
 
 # Dependencies
-RUN apk add --no-cache supervisor bash
+RUN apk add --no-cache supervisor bash jq
 
 # Kafka
-RUN wget -q -O - $MIRROR/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz | \
+RUN wget -q -O - $(wget -q -O - "http://www.apache.org/dyn/closer.cgi?as_json=1" | jq -r .preferred)/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz | \
     tar -xzf - -C /opt && \
     mv /opt/kafka_$SCALA_VERSION-$KAFKA_VERSION /opt/kafka
 
