@@ -28,7 +28,7 @@ function edit_properties() {
 }
 
 edit_properties "$CONF" 'broker.id' "$KAFKA_BROKER_ID"
-edit_properties "$CONF" 'zookeeper.connect' "${ZOOKEEPER_PORT_2181_TCP_ADDR:-zookeeper}:${ZOOKEEPER_PORT_2181_TCP_PORT:-2181}"
+edit_properties "$CONF" 'zookeeper.connect' "${ZOOKEEPER_PORT_2181_TCP_ADDR:-zookeeper}:${ZOOKEEPER_PORT_2181_TCP_PORT:-2181}$CHROOT"
 edit_properties "$CONF" 'advertised.host.name' "$KAFKA_ADVERTISED_HOST_NAME"
 edit_properties "$CONF" 'advertised.port' "$KAFKA_ADVERTISED_PORT"
 edit_properties "$CONF" 'port' "$KAFKA_PORT"
