@@ -38,6 +38,7 @@ edit_properties "$CONF" 'log.retention.hours' "$KAFKA_LOG_RETENTION_HOURS"
 edit_properties "$CONF" 'log.retention.bytes' "$KAFKA_LOG_RETENTION_BYTES"
 edit_properties "$CONF" 'log.num.partitions' "$KAFKA_NUM_PARTITIONS"
 edit_properties "$CONF" 'auto.create.topics.enable' "$KAFKA_AUTO_CREATE_TOPICS"
+edit_properties "$CONF" 'listeners' '$KAFKA_LISTENERS'
 
 # Run Kafka
 kafka-server-start.sh "$CONF"
