@@ -4,7 +4,7 @@
 
 EXTENSION=""
 case $BRANCH in
-  master)
+  prod)
     EXTENSION=".prod"
     CHROOT=${ZOOKEEPER_CHROOT:-/v0_9_0_1_prod}
 
