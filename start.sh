@@ -6,21 +6,21 @@ EXTENSION=""
 case $BRANCH in
   master)
     EXTENSION=".prod"
-    CHROOT=${ZOOKEEPER_CHROOT:-/v0_8_1}
+    CHROOT=${ZOOKEEPER_CHROOT:-/v0_9_0_1_prod}
 
     # TODO Service discovery
     ZOOKEEPER_PORT=${ZOOKEEPER_PORT:-2181}
   ;;
   staging)
     EXTENSION=".staging"
-    CHROOT=${ZOOKEEPER_CHROOT:-/v0_8_1}
+    CHROOT=${ZOOKEEPER_CHROOT:-/v0_9_0_1_staging}
 
     # TODO Service discovery
     ZOOKEEPER_PORT=${ZOOKEEPER_PORT:-2181}
   ;;
   rc)
     EXTENSION=".rc"
-    CHROOT=${ZOOKEEPER_CHROOT:-/v0_8_1_rc}
+    CHROOT=${ZOOKEEPER_CHROOT:-/v0_9_0_1_rc}
 
     # TODO Service discovery
     ZOOKEEPER_PORT=${ZOOKEEPER_PORT:-2181}
