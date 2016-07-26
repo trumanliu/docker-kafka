@@ -23,7 +23,7 @@ auto.leader.rebalance.enable=true
 # Replication
 auto.create.topics.enable=true
 default.replication.factor=2
-
+inter.broker.protocol.version=0.9.0.1
 # Hostname the broker will advertise to consumers. If not set, kafka will use the value returned
 # from InetAddress.getLocalHost().  If there are multiple interfaces getLocalHost
 # may not be what you want.

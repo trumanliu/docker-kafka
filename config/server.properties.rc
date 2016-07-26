@@ -19,6 +19,7 @@
 # The id of the broker. This must be set to a unique integer for each broker.
 broker.id={{BROKER_ID}}
 auto.leader.rebalance.enable=true
+inter.broker.protocol.version=0.9.0.1
 
 # Replication
 auto.create.topics.enable=true
