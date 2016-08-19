@@ -6,7 +6,7 @@ EXTENSION=""
 case $BRANCH in
   master)
     EXTENSION=".prod"
-    CHROOT=${ZOOKEEPER_CHROOT:-/v0_8_1}
+    CHROOT=${ZOOKEEPER_CHROOT:-/Kafka_2015_06}
 
     # TODO Service discovery
     ZOOKEEPER_PORT=${ZOOKEEPER_PORT:-2181}
