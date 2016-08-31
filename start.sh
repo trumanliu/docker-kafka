@@ -43,7 +43,6 @@ case $BRANCH in
 esac
 
 IP=$(cat /etc/hosts | head -n1 | awk '{print $1}')
-PORT=9092
 
 cat /kafka/config/server.properties${EXTENSION} \
   | sed "s|{{ZOOKEEPER_IP}}|${ZOOKEEPER_IP}|g" \
