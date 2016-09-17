@@ -44,7 +44,7 @@ sudo docker run -d -v /mnt/apps/kafka/data:/data -v /mnt/apps/kafka/logs:/logs -
 ```
 
 ### Prod
-
+*BELOW IS PROBABLY OUTDATED* 
 
 ```bash
 sudo docker run -d -v /mnt/apps/kafka/data:/data -v /mnt/apps/kafka/logs:/logs -h $(hostname) --name kafka8 -p 9092:9092 -p 7203:7203 -e EXPOSED_HOSTNAME=usw2c-kafka4-prod.amz.relateiq.com -e EXPOSED_PORT=9092 -e BROKER_ID=1 -e CHROOT=/v0_8_1_1 -e ZOOKEEPER_PORT_2181_TCP_ADDR=10.30.10.24 kafka:0.8.1.1
@@ -52,4 +52,13 @@ sudo docker run -d -v /mnt/apps/kafka/data:/data -v /mnt/apps/kafka/logs:/logs -
 sudo docker run -d -v /mnt/apps/kafka/data:/data -v /mnt/apps/kafka/logs:/logs -h $(hostname) --name kafka8 -p 9092:9092 -p 7203:7203 -e EXPOSED_HOSTNAME=usw2b-kafka4-prod.amz.relateiq.com -e EXPOSED_PORT=9092 -e BROKER_ID=2 -e CHROOT=/v0_8_1_1 -e ZOOKEEPER_PORT_2181_TCP_ADDR=10.30.10.24 kafka:0.8.1.1
 
 sudo docker run -d -v /mnt/apps/kafka/data:/data -v /mnt/apps/kafka/logs:/logs -h $(hostname) --name kafka8 -p 9092:9092 -p 7203:7203 -e EXPOSED_HOSTNAME=usw2a-kafka4-prod.amz.relateiq.com -e EXPOSED_PORT=9092 -e BROKER_ID=3 -e CHROOT=/v0_8_1_1 -e ZOOKEEPER_PORT_2181_TCP_ADDR=10.30.10.24 kafka:0.8.1.1
+```
+### frankfurt
+#### 0.8.1.1
+```bash
+docker run -d -v /mnt/apps/kafka/data:/data -v /mnt/apps/kafka/logs:/logs -h $(hostname) --name kafka -p 9092:9092 -p 7203:7203 -e EXPOSED_HOSTNAME=$(hostname) -e EXPOSED_PORT=9092 -e BROKER_ID=1 -e CHROOT=/Kafka_2015_06 -e ZOOKEEPER_IP=euc1a-zookeeper2-frankfurt.salesforceiq.com:2181,euc1a-zookeeper1-frankfurt.salesforceiq.com:2181,euc1b-zookeeper1-frankfurt.salesforceiq.com -e EXPOSED_PORT=9092 -e BRANCH=master  docker.amz.relateiq.com/relateiq/kafka:latest
+
+docker run -d -v /mnt/apps/kafka/data:/data -v /mnt/apps/kafka/logs:/logs -h $(hostname) --name kafka -p 9092:9092 -p 7203:7203 -e EXPOSED_HOSTNAME=$(hostname) -e EXPOSED_PORT=9092 -e BROKER_ID=2 -e CHROOT=/Kafka_2015_06 -e ZOOKEEPER_IP=euc1a-zookeeper2-frankfurt.salesforceiq.com:2181,euc1a-zookeeper1-frankfurt.salesforceiq.com:2181,euc1b-zookeeper1-frankfurt.salesforceiq.com -e EXPOSED_PORT=9092 -e BRANCH=master  docker.amz.relateiq.com/relateiq/kafka:latest
+docker run -d -v /mnt/apps/kafka/data:/data -v /mnt/apps/kafka/logs:/logs -h $(hostname) --name kafka -p 9092:9092 -p 7203:7203 -e EXPOSED_HOSTNAME=$(hostname) -e EXPOSED_PORT=9092 -e BROKER_ID=3 -e CHROOT=/Kafka_2015_06 -e ZOOKEEPER_IP=euc1a-zookeeper2-frankfurt.salesforceiq.com:2181,euc1a-zookeeper1-frankfurt.salesforceiq.com:2181,euc1b-zookeeper1-frankfurt.salesforceiq.com -e EXPOSED_PORT=9092 -e BRANCH=master  docker.amz.relateiq.com/relateiq/kafka:latest
+
 ```
