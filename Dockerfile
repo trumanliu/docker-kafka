@@ -1,4 +1,4 @@
-FROM relateiq/oracle-java8
+FROM relateiq/oracle-java7
 
 RUN apt-get update && apt-get install -y wget
 
@@ -34,7 +34,7 @@ WORKDIR /kafka
 VOLUME [ "/data", "/logs" ]
 
 # broker, jmx
-EXPOSE ${PORT} ${JMX_PORT}
+EXPOSE 9092 ${JMX_PORT}
 
 ADD http://repo1.maven.org/maven2/org/slf4j/slf4j-log4j12/1.7.6/slf4j-log4j12-1.7.6.jar /kafka/lib/slf4j-log4j12.jar
 ADD config /kafka/config
