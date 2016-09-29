@@ -66,4 +66,3 @@ zookeeper.connect={{ZOOKEEPER_IP}}:{{ZOOKEEPER_PORT}}{{CHROOT}}
 zookeeper.connection.timeout.ms=10000
 controlled.shutdown.enable=true
 zookeeper.session.timeout.ms=10000
-offsets.topic.replication.factor=1
