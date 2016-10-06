@@ -9,7 +9,7 @@ ENV PATH $PATH:$KAFKA_HOME/bin
 RUN mkdir /opt
 
 # Dependencies
-RUN apk add --no-cache supervisor bash jq
+RUN apk add --no-cache supervisor bash jq libc6-compat
 
 # Kafka
 RUN wget -q -O - $(wget -q -O - "http://www.apache.org/dyn/closer.cgi?as_json=1" | jq -r .preferred)/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz | \
