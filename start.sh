@@ -51,5 +51,16 @@ cat /kafka/config/server.properties${EXTENSION} \
 export CLASSPATH=$CLASSPATH:/kafka/lib/slf4j-log4j12.jar
 export JMX_PORT=7203
 
+if [ -z $KAFKA_JMX_OPTS ]; then
+    KAFKA_JMX_OPTS="-Dcom.sun.management.jmxremote=true"
+    KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.authenticate=false"
+    KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.ssl=false"
+    KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.rmi.port=$JMX_PORT"
+    KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT"
+    KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Djava.rmi.server.hostname=${JAVA_RMI_SERVER_HOSTNAME:-$EXPOSED_HOST}"
+    export KAFKA_JMX_OPTS
+fi
+
+
 echo "Starting kafka"
 exec /kafka/bin/kafka-server-start.sh /kafka/config/server.properties
