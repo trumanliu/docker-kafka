@@ -2,13 +2,14 @@ FROM relateiq/oracle-java7
 
 RUN apt-get update && apt-get install -y wget
 
-RUN mkdir /data /logs /kafka
+RUN mkdir /data && \ 
+    mkdir -p /kafka/logs
 
 RUN wget --progress=dot:mega -O - https://s3-us-west-1.amazonaws.com/relateiq-build-resources/kafka_2.10-0.8.1.1.tgz | tar -zx -C /kafka --strip-components=1
 
 # RUN cd kafka && ./gradlew jar
 
-VOLUME [ "/data", "/logs" ]
+VOLUME [ "/data", "/kafka/logs" ]
 
 # primary, jmx
 EXPOSE 9092 7203
