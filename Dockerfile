@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y wget
 ENV KAFKA_VERSION=0.9.0.1 KAFKA_SCALA_VERSION=2.11 JMX_PORT=7203
 ENV KAFKA_RELEASE_ARCHIVE kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz
 
-RUN mkdir /data /logs /kafka
+RUN mkdir /data && \
+    mkdir -p /kafka/logs
 
 # Download Kafka binary distribution
 ADD http://www.us.apache.org/dist/kafka/${KAFKA_VERSION}/${KAFKA_RELEASE_ARCHIVE} /tmp/
@@ -22,16 +23,11 @@ RUN echo VERIFY CHECKSUM: && \
 RUN tar -zx -C /kafka --strip-components=1 -f ${KAFKA_RELEASE_ARCHIVE} && \
   rm -rf kafka_*
 
-# Set up a user to run Kafka
-#RUN groupadd kafka && \
-#  useradd -d /kafka -g kafka -s /bin/false kafka && \
-#  chown -R kafka:kafka /kafka /data /logs
-#USER kafka
 ENV PATH /kafka/bin:$PATH
 WORKDIR /kafka
 
 
-VOLUME [ "/data", "/logs" ]
+VOLUME [ "/data", "/kafka/logs" ]
 
 # broker, jmx
 EXPOSE 9092 ${JMX_PORT}
