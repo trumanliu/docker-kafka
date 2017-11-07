@@ -32,6 +32,13 @@ case $BRANCH in
     # TODO Service Discovery
     ZOOKEEPER_PORT=${ZOOKEEPER_PORT:-2181}
   ;;
+  kafka-1.0.0)
+    EXTENSION=".kafka-1.0.0"
+    CHROOT=${ZOOKEEPER_CHROOT:-/kafka1.0}
+
+    # TODO Service Discovery
+    ZOOKEEPER_PORT=${ZOOKEEPER_PORT:-2181}
+  ;;
   *)
     # Developer environments, etc.
     EXTENSION=".default"
